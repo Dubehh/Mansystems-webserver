@@ -1,7 +1,8 @@
+php_flag display_errors 1
 RewriteEngine On
 RewriteBase /
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
-RewriteRule ^ %1 [R=301,L]
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*?)/?$ $1.php [NC,L]
+RewriteCond %(REQUEST_FILENAME} !-d
+RewriteCond %(REQUEST_FILENAME} !-f
+RewriteCond %(REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png|php)$ [NC]
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L,T=text/css]

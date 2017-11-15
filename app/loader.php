@@ -6,7 +6,13 @@
  */
 
 //Set defaults
+session_start();
 define("_APP", $_SERVER['DOCUMENT_ROOT'].'/app/');
+define("_CONTROLLERS", _APP.'controllers/');
+define("_VIEWS", _APP.'views/');
+define("_CSS", "css");
+define("_JS", "js");
+define("_IMG", "images");
 define("_AUTOLOAD_FOLDERS", array(
     "core",
     "stream"
