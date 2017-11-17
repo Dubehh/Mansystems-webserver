@@ -15,6 +15,7 @@ define("_JS", "js");
 define("_IMG", "images");
 define("_AUTOLOAD_FOLDERS", array(
     "core",
+    "system",
     "stream"
 ));
 

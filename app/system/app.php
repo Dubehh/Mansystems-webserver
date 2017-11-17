@@ -9,6 +9,7 @@ class App {
 
     private static $instance = null;
 
+    private $datasource;
     private $url;
     private $controller, $view, $args;
 
@@ -17,12 +18,17 @@ class App {
         $this->controller = empty($this->url[0]) ? 'home' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
         $this->args = $this->getArgs();
+        $this->datasource = new Database();
     }
 
     public static function instance(){
         if(self::$instance==null)
             self::$instance = new App();
         return self::$instance;
+    }
+
+    public function getDataSource(){
+        return $this->datasource;
     }
 
     /**
