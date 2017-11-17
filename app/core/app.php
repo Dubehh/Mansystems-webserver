@@ -16,7 +16,7 @@ class App {
         $this->url = explode('/', $_GET['url']);
         $this->controller = empty($this->url[0]) ? 'home' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
-        $this->args = $this->fetchArguments();
+        $this->args = $this->getArgs();
     }
 
     public static function instance(){
@@ -66,26 +66,12 @@ class App {
      * If there are multiple arguments supplised an array is returned, a single value is returned otherwise
      * @return array|mixed|null The argument(s)
      */
-    private function fetchArguments(){
+    private function getArgs() {
         $rtn = array();
-        for($i = 2; $i < count($this->url) && !empty($this->url[$i]); $i++)
+        for ($i = 2; $i < count($this->url) && !empty($this->url[$i]); $i++)
             array_push($rtn, $this->url[$i]);
-        if(($count = count($rtn))> 0)
+        if (($count = count($rtn)) > 0)
             return $count > 1 ? $rtn : $rtn[0];
         return null;
     }
-
-    /**
-     * Fetches a relative path of the given folder and filename
-     * @param $folder string the name of the folder
-     * @param $file string the name of the file
-     * @return string The relative path
-     */
-    public function fetchResource($file, $folder){
-        $append = './';
-        for($i = 1; $i < count($this->url); $i++)
-            $append.='../';
-        return $append.$folder.'/'.$file;
-    }
-
 }

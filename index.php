@@ -16,9 +16,6 @@ require_once _ROOT._LOADER_MODEL;
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <?php
-    ResourceLoader::loadCSS("hoer");
-    ?>
 </head>
 <body>
     <?php App::instance()->load(); ?>

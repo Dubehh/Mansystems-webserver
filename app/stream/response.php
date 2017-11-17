@@ -16,7 +16,7 @@ class Response extends Stream implements IStreamResponse {
     }
 
     public function respond() {
-
+        echo 'bier is plezier';
     }
 
 }

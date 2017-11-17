@@ -18,7 +18,7 @@ class View {
      * Dynamically appends fields to the view.
      * These fields can be used inside the view.
      * @param $key string The name of the field
-     * @param $value object The value of the field
+     * @param $value mixed The value of the field
      */
     public function attach($key, $value){
         $this->$key = $value;
