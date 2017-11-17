@@ -14,7 +14,9 @@ define("_CSS", "css");
 define("_JS", "js");
 define("_IMG", "images");
 define("_AUTOLOAD_FOLDERS", array(
-    "core",
+    "models",
+    "system",
+    "system/fluent",
     "stream"
 ));
 

@@ -9,6 +9,8 @@ class App {
 
     private static $instance = null;
 
+    private $client;
+    private $datasource;
     private $url;
     private $controller, $view, $args;
 
@@ -17,12 +19,21 @@ class App {
         $this->controller = empty($this->url[0]) ? 'home' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
         $this->args = $this->getArgs();
+        $this->datasource = new Database();
     }
 
     public static function instance(){
         if(self::$instance==null)
             self::$instance = new App();
         return self::$instance;
+    }
+
+    /**
+     * Returns the datasource
+     * @return Database Database
+     */
+    public function getDataSource(){
+        return $this->datasource;
     }
 
     /**
@@ -45,6 +56,21 @@ class App {
     }
 
     /**
+     * Returns the current connectec  client
+     * @return Client client
+     */
+    public function getClient(){
+        return $this->client;
+    }
+
+    /**
+     * Sets the current client to the given client
+     * @param $client Client
+     */
+    public function setClient($client){
+        $this->client = $client;
+    }
+    /**
      * @return string The current controller name
      */
     public function getController(){
@@ -57,6 +83,10 @@ class App {
         return $this->view;
     }
 
+    /**
+     * Returns the full url array
+     * @return array mixed
+     */
     public function getURL(){
         return $this->url;
     }
@@ -73,5 +103,18 @@ class App {
         if (($count = count($rtn)) > 0)
             return $count > 1 ? $rtn : $rtn[0];
         return null;
+    }
+
+    /**
+     * Redirects to the given location
+     * @param string $controller The target controller
+     * @param string $view The target view
+     */
+    public function redirect($controller='', $view = ''){
+        $prefix = "http://" . $_SERVER['SERVER_NAME'];
+        header('Location: '.$prefix.
+           (empty($controller) ? '' : '/'.$controller).
+           (empty($view) ? '' : '/'.$view));
+        exit;
     }
 }
