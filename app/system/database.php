@@ -29,10 +29,18 @@ class Database {
         echo '<MYSQL: '.$message.' >';
     }
 
+    /**
+     * Returns the PDO library for building queries
+     * @return FluentPDO Querybuilder
+     */
     public function getHandler(){
         return $this->handler;
     }
 
+    /**
+     * Returns the raw connection
+     * @return PDO
+     */
     public function getConnection(){
         return $this->connection;
     }

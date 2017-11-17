@@ -28,6 +28,10 @@ class App {
         return self::$instance;
     }
 
+    /**
+     * Returns the datasource
+     * @return Database Database
+     */
     public function getDataSource(){
         return $this->datasource;
     }
@@ -51,10 +55,18 @@ class App {
         }
     }
 
+    /**
+     * Returns the current connectec  client
+     * @return Client client
+     */
     public function getClient(){
         return $this->client;
     }
 
+    /**
+     * Sets the current client to the given client
+     * @param $client Client
+     */
     public function setClient($client){
         $this->client = $client;
     }
@@ -71,6 +83,10 @@ class App {
         return $this->view;
     }
 
+    /**
+     * Returns the full url array
+     * @return array mixed
+     */
     public function getURL(){
         return $this->url;
     }
