@@ -5,7 +5,14 @@
  * Date: 15-11-2017
  */
 
-interface Controller {
+abstract class Controller {
 
-    public function index();
+    protected $auth;
+    protected $valid;
+    public function __construct(){
+        $this->auth = new Auth();
+        $this->valid = $this->auth->valid();
+    }
+
+    public abstract function index();
 } 

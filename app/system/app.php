@@ -9,6 +9,7 @@ class App {
 
     private static $instance = null;
 
+    private $client;
     private $datasource;
     private $url;
     private $controller, $view, $args;
@@ -50,6 +51,13 @@ class App {
         }
     }
 
+    public function getClient(){
+        return $this->client;
+    }
+
+    public function setClient($client){
+        $this->client = $client;
+    }
     /**
      * @return string The current controller name
      */
@@ -79,5 +87,18 @@ class App {
         if (($count = count($rtn)) > 0)
             return $count > 1 ? $rtn : $rtn[0];
         return null;
+    }
+
+    /**
+     * Redirects to the given location
+     * @param string $controller The target controller
+     * @param string $view The target view
+     */
+    public function redirect($controller='', $view = ''){
+        $prefix = "http://" . $_SERVER['SERVER_NAME'];
+        header('Location: '.$prefix.
+           (empty($controller) ? '' : '/'.$controller).
+           (empty($view) ? '' : '/'.$view));
+        exit;
     }
 }

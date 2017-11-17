@@ -8,7 +8,7 @@
 /**
  * Class ResourceLoader Utility
  */
-final class ResourceLoader {
+class ResourceLoader {
 
     /**
      * Fetches a relative path of the given folder and filename

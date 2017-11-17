@@ -5,17 +5,16 @@
  * Date: 15-11-2017
  */
 
-class HomeController implements Controller{
+class HomeController extends Controller{
+
+    public function __construct(){
+        parent::__construct();
+        if(!$this->valid)
+            App::instance()->redirect('account', 'login');
+    }
 
     public function index() {
         return new View();
     }
 
-    public function start(){
-        $view = new View();
-        $view->attach('table_data', array("x" => "y", "z" => "a"));
-        return $view;
-    }
-
-
-} 
+}
