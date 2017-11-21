@@ -15,4 +15,8 @@ abstract class Controller {
     }
 
     public abstract function index();
+
+    public function isValid(){
+        return $this->valid;
+    }
 } 

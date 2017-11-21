@@ -11,7 +11,7 @@ class Client {
     private $token;
     private $stamp;
 
-    public function __construct($id, $token, $stamp){
+    public function __construct($id, $token, $stamp = -1){
         $this->id = $id;
         $this->token = $token;
         $this->stamp = $stamp;

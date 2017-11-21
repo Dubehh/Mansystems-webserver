@@ -8,18 +8,18 @@
 //Set defaults
 session_start();
 define("_APP", $_SERVER['DOCUMENT_ROOT'].'/app/');
+define("_URL", "http://" . $_SERVER['SERVER_NAME'].'/');
 define("_CONTROLLERS", _APP.'controllers/');
 define("_VIEWS", _APP.'views/');
 define("_CSS", "css");
 define("_JS", "js");
-define("_IMG", "images");
+define("_IMG", "img");
 define("_AUTOLOAD_FOLDERS", array(
     "models",
     "system",
     "system/fluent",
     "stream"
 ));
-
 //Register autoloader
 spl_autoload_register(function($class){
     $iterator = new ArrayIterator(_AUTOLOAD_FOLDERS);

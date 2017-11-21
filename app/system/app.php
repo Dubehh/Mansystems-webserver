@@ -6,12 +6,12 @@
  */
 
 class App {
-
     private static $instance = null;
 
     private $client;
     private $datasource;
     private $url;
+    private $ctrlMod;
     private $controller, $view, $args;
 
     private function __construct(){
@@ -19,6 +19,8 @@ class App {
         $this->controller = empty($this->url[0]) ? 'home' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
         $this->args = $this->getArgs();
+        $this->responseMessage = null;
+        $this->ctrlMod = null;
         $this->datasource = new Database();
     }
 
@@ -46,6 +48,7 @@ class App {
             require_once $ref;
             $obj = substr($file, 0, -4);
             $controller = new $obj;
+            $this->ctrlMod = $controller;
             $func = $this->view = method_exists($controller, $this->view) ? $this->view : 'index';
             $view = $controller->$func($this->args);
             /** @noinspection PhpUndefinedMethodInspection */
@@ -103,6 +106,13 @@ class App {
         if (($count = count($rtn)) > 0)
             return $count > 1 ? $rtn : $rtn[0];
         return null;
+    }
+
+    /**
+     * @return Controller returns the current controller object
+     */
+    public function getControllerObject(){
+        return $this->ctrlMod;
     }
 
     /**

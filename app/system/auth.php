@@ -45,9 +45,9 @@ class Auth {
      * @param $client Client
      */
     public function invalidate($client){
-        $validated = new Client($client->getID(), $client->getToken(), $client->getStamp());
+        $validated = new Client($client->getID(), $client->getToken(), time());
         App::instance()->setClient($validated);
-        $_SESSION[self::SESSION_KEY] = Client::deserialize($validated);
+        $_SESSION[self::SESSION_KEY] = Client::serialize($validated);
     }
 
 }

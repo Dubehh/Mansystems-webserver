@@ -9,7 +9,7 @@ class Database {
     const UID  = "root",
           PASS = "",
           HOST = "localhost",
-          DATABASE = "Manny";
+          DATABASE = "Mansystems";
 
     private $connection;
     private $handler;
