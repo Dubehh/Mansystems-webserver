@@ -6,7 +6,6 @@
  */
 
 class App {
-
     private static $instance = null;
 
     private $client;
@@ -19,6 +18,8 @@ class App {
         $this->controller = empty($this->url[0]) ? 'home' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
         $this->args = $this->getArgs();
+        $this->responseMessage = null;
+        $this->ctrlMod = null;
         $this->datasource = new Database();
     }
 
@@ -46,6 +47,7 @@ class App {
             require_once $ref;
             $obj = substr($file, 0, -4);
             $controller = new $obj;
+            $this->ctrlMod = $controller;
             $func = $this->view = method_exists($controller, $this->view) ? $this->view : 'index';
             $view = $controller->$func($this->args);
             /** @noinspection PhpUndefinedMethodInspection */

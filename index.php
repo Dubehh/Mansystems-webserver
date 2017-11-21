@@ -16,6 +16,7 @@ require_once _ROOT._LOADER_MODEL;
 <head>
     <meta charset="UTF-8">
     <title>Manny</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
     <?php
     //Load CSS files
     ResourceLoader::loadCSS("reset");
@@ -24,6 +25,31 @@ require_once _ROOT._LOADER_MODEL;
     ?>
 </head>
 <body>
-    <?php App::instance()->load(); ?>
+    <nav class="navbar-main navbar navbar-inverse navbar-fixed-top">
+        <div class="navigation-header container-fluid">
+            <div class="navbar-header">
+                <a class="header-icon navbar-brand" href="#">
+                    <?php ResourceLoader::loadIMG('manny_logo.png');?>
+                </a>
+            </div>
+            <?php
+            $auth = new Auth();
+            if($auth->valid()){?>
+            <ul id="main-nav" class="nav navbar-nav navbar-right">
+                <li><a class="nav-item" href="#">Dashboard</a></li>
+                <li><a class="nav-item" href="#">Database</a></li>
+                <li><a class="nav-item" href="<?php echo _URL.'account/logout'?>">Uitloggen</a></li>
+            </ul>
+            <?php }?>
+        </div>
+    </nav>
+    <div id="content-container" class="container">
+        <?php App::instance()->load(); ?>
+    </div>
+    <?php
+    //Load JS files
+    ResourceLoader::loadJS("jquery");
+    ResourceLoader::loadJS("main");
+    ?>
 </body>
 </html>
