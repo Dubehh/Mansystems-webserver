@@ -11,7 +11,6 @@ class App {
     private $client;
     private $datasource;
     private $url;
-    private $ctrlMod;
     private $controller, $view, $args;
 
     private function __construct(){
@@ -106,13 +105,6 @@ class App {
         if (($count = count($rtn)) > 0)
             return $count > 1 ? $rtn : $rtn[0];
         return null;
-    }
-
-    /**
-     * @return Controller returns the current controller object
-     */
-    public function getControllerObject(){
-        return $this->ctrlMod;
     }
 
     /**
