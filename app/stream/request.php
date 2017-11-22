@@ -7,12 +7,15 @@
 
 class Request extends Stream {
 
+    private $method;
     function __construct($resolver, $data) {
         parent::__construct($resolver, $data);
     }
 
     public function onStreamRequestReceive() {
-        echo 'hallo!';
+        $this->method = new Method($this->data);
+        $request = new TrackingRequest(App::instance()->getDataSource(), $this->method);
+        $request->load();
+        $request->update();
     }
-
 }

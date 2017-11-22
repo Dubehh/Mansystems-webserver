@@ -16,7 +16,10 @@ class Response extends Stream implements IStreamResponse {
     }
 
     public function respond() {
-        echo 'bier is plezier';
+        echo json_encode(array(
+            "a" => ["b" => 1, "c" => 2],
+            "b" => 2
+        ));
     }
 
 }
