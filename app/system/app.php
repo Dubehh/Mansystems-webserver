@@ -29,6 +29,10 @@ class App {
         return self::$instance;
     }
 
+    /**
+     * fetches the player manager
+     * @return PlayerManager Player manager
+     */
     public function getPlayerManager(){
         return $this->players;
     }

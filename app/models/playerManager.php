@@ -31,14 +31,16 @@ class PlayerManager {
 
 
     public function create($name, $uuid){
-        if($this->fetch($uuid) == null){
-            $this->handler->insertInto(self::TABLE)->values(array(
+        if(($player = $this->fetch($uuid)) == null){
+            $id = $this->handler->insertInto(self::TABLE)->values(array(
                 "Name" => $name,
-                "UUID" => $uuid
+                "UUID" => $uuid,
+                "Registered" => date('y-m-d H:m:s')
             ))->execute();
-        }
+            return new Player( $id,$uuid,$name);
+        }else
+            return $player;
     }
-
 }
 
 class Player{
