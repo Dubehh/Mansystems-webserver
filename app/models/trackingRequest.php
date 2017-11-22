@@ -32,6 +32,9 @@ class TrackingRequest {
         $this->table  = 'tracking_'.$this->table;
     }
 
+    /**
+     * Loads the tracking request and creates the datatable
+     */
     public function load(){
         if($this->query != null){
             $query = 'CREATE TABLE IF NOT EXISTS '.$this->table.' (';
@@ -49,6 +52,10 @@ class TrackingRequest {
         }
     }
 
+    /**
+     * Proceeds to update the database table with all data content from the tracking request
+     * @throws Exception throws when an SQL error occurs
+     */
     public function update(){
         $player = App::instance()->getPlayerManager()->create($this->name, $this->uid);
         if($player==null) return;
@@ -58,10 +65,8 @@ class TrackingRequest {
             $data = array(
                "PlayerID"   => $player->getID(),
                "DateAdded"  => date("y-m-d H:m:s"));
-            foreach($this->method->getArray() as $key => $content) {
-                if($key == 'RecordAdded') echo $content[$index];
+            foreach($this->method->getArray() as $key => $content)
                 $data[$key] = $content[$index];
-            }
             $handler->insertInto($this->table)->values($data)->execute();
         }
         $handler->getPdo()->exec('COMMIT');
