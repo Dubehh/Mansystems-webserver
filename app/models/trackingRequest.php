@@ -12,7 +12,7 @@ class TrackingRequest {
     const QUERY_ID  = "creation_query";
     const TABLE_ID  = "table_name";
 
-    private $player, $query, $table, $uid;
+    private $name, $query, $table, $uid;
     /** @var Database source */
     private $source;
     /** @var Method method */
@@ -25,16 +25,19 @@ class TrackingRequest {
     public function __construct($source, $method){
         $this->method = $method;
         $this->source = $source;
-        $this->player = $method->fetch(self::PLAYER_NAME, true, null);
+        $this->query  = $method->fetch(self::QUERY_ID, true, null);
+        $this->name   = $method->fetch(self::PLAYER_NAME, true, null);
         $this->uid    = $method->fetch(self::PLAYER_UID, true, null);
         $this->table  = $method->fetch(self::TABLE_ID, true, null);
-        $this->query  = $method->fetch(self::QUERY_ID, true, null);
+        $this->table  = 'tracking_'.$this->table;
     }
 
     public function load(){
         if($this->query != null){
-            $query = 'CREATE TABLE IF NOT EXISTS tracking_'.$this->table.' (';
+            $query = 'CREATE TABLE IF NOT EXISTS '.$this->table.' (';
             $query.= '`ID` int(11) NOT NULL AUTO_INCREMENT, ';
+            $query.= '`PlayerID` int(11) NOT NULL, ';
+            $query.= '`DateAdded` datetime DEFAULT NULL, ';
             $query.= $this->query;
             $query.=', PRIMARY KEY (`ID`))';
             try{
@@ -47,10 +50,20 @@ class TrackingRequest {
     }
 
     public function update(){
-        foreach($this->method->getArray() as $key => $content){
-            $this->source->log($key);
-            foreach($content as $value)
-                $this->source->log('  '.$value);
+        $player = App::instance()->getPlayerManager()->create($this->name, $this->uid);
+        if($player==null) return;
+        $handler = $this->source->getHandler();
+        $handler->getPdo()->exec('START TRANSACTION');
+        for($index = 0; $index < count(reset($this->method->getArray())); $index++){
+            $data = array(
+               "PlayerID"   => $player->getID(),
+               "DateAdded"  => date("y-m-d H:m:s"));
+            foreach($this->method->getArray() as $key => $content) {
+                if($key == 'RecordAdded') echo $content[$index];
+                $data[$key] = $content[$index];
+            }
+            $handler->insertInto($this->table)->values($data)->execute();
         }
+        $handler->getPdo()->exec('COMMIT');
     }
 } 

@@ -19,7 +19,7 @@ class Database {
             $this->connection = new PDO("mysql:host=" . self::HOST . ";dbname=" . self::DATABASE, self::UID, self::PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(PDOException $exception){
-            echo $exception->getMessage();
+            $this->log($exception->getMessage());
             exit;
         }
         $this->handler = new FluentPDO($this->connection);
