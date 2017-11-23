@@ -8,6 +8,6 @@ $(function(){
 
     $("#toggleNav").click(function(){
         var target = $(this).attr('data-target');
-        $(target).slideToggle("slow");
+        $(target).slideToggle("fast");
     });
 });
