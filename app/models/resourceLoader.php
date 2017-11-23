@@ -16,7 +16,7 @@ class ResourceLoader {
      * @param $filename string the name of the file
      * @return string The relative path
      */
-    private static function getRelativePath($folder, $filename){
+    public static function getRelativePath($folder, $filename){
         $append = './';
         for($i = 1; $i < count(App::instance()->getURL()); $i++)
             $append.='../';

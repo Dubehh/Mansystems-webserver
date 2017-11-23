@@ -15,7 +15,7 @@ class AccountController extends Controller{
 
     public function index() {
         if($this->valid)
-            App::instance()->redirect('home', 'index');
+            App::instance()->redirect('dashboard', 'index');
         return $this->login();
     }
 
@@ -27,7 +27,7 @@ class AccountController extends Controller{
 
     public function register(){
         if($this->valid)
-            App::instance()->redirect('home', 'index');
+            App::instance()->redirect('dashboard', 'index');
         $method = new Method($_POST);
         if(!$method->isEmpty()) {
             $user = preg_replace('/\s+/', '', $method->fetch('username', false, ""));
@@ -66,7 +66,7 @@ class AccountController extends Controller{
                         ->execute();
                     $auth = new Auth();
                     $auth->invalidate(new Client($id, $token));
-                    App::instance()->redirect('home', 'index');
+                    App::instance()->redirect('dashboard', 'index');
                 }
             }
             $this->setResponse("Foutieve inlogpoging: Probeer het opnieuw.");
