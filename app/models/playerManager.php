@@ -34,6 +34,15 @@ class PlayerManager {
         return null;
     }
 
+    /**
+     * Removes the player with the given ID
+     * @param $id int ID
+     */
+    public function remove($id){
+        $this->handler->deleteFrom(self::TABLE)
+            ->where('ID', $id)
+            ->execute();
+    }
 
     /**
      * Creates a new player or finds an existing one

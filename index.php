@@ -20,6 +20,7 @@ require_once _ROOT._LOADER_MODEL;
     <?php
     //Load CSS files
     ResourceLoader::loadCSS("reset");
+    ResourceLoader::loadCSS("font_awesome");
     ResourceLoader::loadCSS("bootstrap");
     ResourceLoader::loadCSS("page");
     ?>
@@ -32,15 +33,22 @@ require_once _ROOT._LOADER_MODEL;
                     <?php ResourceLoader::loadIMG('manny_logo.png');?>
                 </a>
             </div>
-            <?php
-            $auth = new Auth();
-            if($auth->valid()){?>
-            <ul id="main-nav" class="nav navbar-nav navbar-right">
-                <li><a class="nav-item" href="#">Dashboard</a></li>
-                <li><a class="nav-item" href="#">Database</a></li>
-                <li><a class="nav-item" href="<?php echo _URL.'account/logout'?>">Uitloggen</a></li>
-            </ul>
-            <?php }?>
+            <button type="button" class="navbar-toggle" id="toggleNav" data-toggle="collapse" data-target="#navMain">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMain">
+                <?php
+                $auth = new Auth();
+                if($auth->valid()){?>
+                <ul id="main-nav" class="nav navbar-nav navbar-right">
+                    <li><a class="nav-item" href="#">Dashboard</a></li>
+                    <li><a class="nav-item" href="#">Modules</a></li>
+                    <li><a class="nav-item" href="<?php echo _URL.'account/logout'?>">Uitloggen</a></li>
+                </ul>
+                <?php }?>
+            </div>
         </div>
     </nav>
     <div id="content-container" class="container">
