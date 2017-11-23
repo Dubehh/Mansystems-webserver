@@ -16,6 +16,10 @@ abstract class ResponseHandler {
 
     public abstract function respond();
 
+    /**
+     * Sends an encoded response to the client
+     * @param $array Mixed response
+     */
     protected function send($array){
         echo json_encode($array);
     }
