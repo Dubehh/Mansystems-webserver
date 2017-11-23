@@ -14,20 +14,12 @@ class StreamResolver {
         $this->post = $post;
     }
 
-    public function fetch($key, $delete = true){
-        $rtn = array_key_exists($key, $this->post) ? $this->post[$key] : null;
-        if($delete && $rtn != null){
-            unset($this->post[$key]);
-            array_values($this->post);
-        }
-        return $rtn;
-    }
-
     public function resolve(){
-        $type = $this->fetch(self::STREAM_DEFINITION_KEY);
+        $method = new Method($this->post);
+        $type = $method->fetch(self::STREAM_DEFINITION_KEY, true, null);
         if($type != null){
             /** @var $stream Stream*/
-            $stream = new $type($this, $this->post);
+            $stream = new $type($this, $method->getArray());
             $stream->onStreamRequestReceive();
             /** @var $stream IStreamResponse*/
             if($stream instanceof IStreamResponse)

@@ -8,6 +8,7 @@
 class App {
     private static $instance = null;
 
+    private $players;
     private $client;
     private $datasource;
     private $url;
@@ -18,9 +19,8 @@ class App {
         $this->controller = empty($this->url[0]) ? 'home' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
         $this->args = $this->getArgs();
-        $this->responseMessage = null;
-        $this->ctrlMod = null;
         $this->datasource = new Database();
+        $this->players = new PlayerManager($this->datasource);
     }
 
     public static function instance(){
@@ -29,6 +29,14 @@ class App {
         return self::$instance;
     }
 
+    /**
+     * fetches the player manager
+     * @return PlayerManager Player manager
+     */
+    public function getPlayerManager(){
+        return $this->players;
+    }
+    
     /**
      * Returns the datasource
      * @return Database Database
