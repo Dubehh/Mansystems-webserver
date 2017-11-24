@@ -56,7 +56,7 @@ class PlayerManager {
             $id = $this->handler->insertInto(self::TABLE)->values(array(
                 "Name" => $name,
                 "UUID" => $uuid,
-                "Registered" => date('y-m-d H:m:s')
+                "Registered" => date('y-m-d H:i:s')
             ))->execute();
             return new Player( $id,$uuid,$name);
         }else

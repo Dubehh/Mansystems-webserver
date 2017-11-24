@@ -64,7 +64,7 @@ class TrackingRequest {
         for($index = 0; $index < count(reset($this->method->getArray())); $index++){
             $data = array(
                "PlayerID"   => $player->getID(),
-               "DateAdded"  => date("y-m-d H:m:s"));
+               "DateAdded"  => date("y-m-d H:i:s"));
             foreach($this->method->getArray() as $key => $content)
                 $data[$key] = $content[$index];
             $handler->insertInto($this->table)->values($data)->execute();
