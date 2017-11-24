@@ -43,8 +43,8 @@ require_once _ROOT._LOADER_MODEL;
                 $auth = new Auth();
                 if($auth->valid()){?>
                 <ul id="main-nav" class="nav navbar-nav navbar-right">
-                    <li><a class="nav-item" href="#">Dashboard</a></li>
-                    <li><a class="nav-item" href="#">Modules</a></li>
+                    <li><a class="nav-item" href="<?php echo _URL.'dashboard'?>">Dashboard</a></li>
+                    <li><a class="nav-item" href="<?php echo _URL.'module'?>">Modules</a></li>
                     <li><a class="nav-item" href="<?php echo _URL.'account/logout'?>">Uitloggen</a></li>
                 </ul>
                 <?php }?>

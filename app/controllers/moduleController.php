@@ -17,5 +17,10 @@ class ModuleController extends Controller{
         return new View();
     }
 
+    public function manage_millionaire(){
+        //get current questions
+        return new View("millionaire_mod");
+    }
+
 
 } 

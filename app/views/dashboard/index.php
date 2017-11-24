@@ -19,7 +19,7 @@
                 echo "<td>".($id = $row['ID'])."</td>";
                 echo "<td>".$row['Name']."</td>";
                 echo "<td>".$row['Registered']."</td>";
-                echo "<td><a href='"._URL."dashboard/player-delete/".$id."'><img src='".ResourceLoader::getRelativePath(_IMG, 'delete.png')."' class='delete-row-icon'/></a></td>";
+                echo "<td><a href='"._URL."dashboard/player-delete/".$id."'><img src='".ResourceLoader::getRelativePath(_IMG, 'delete.png')."' class='row-icon'/></a></td>";
                 echo "</tr>";
             }
             ?>

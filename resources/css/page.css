@@ -5,7 +5,7 @@ body{background-color:#3a88c5}.navbar-main{background:none;border:none;-webkit-b
     height: 100%;
 }
 
-.page-section-header{
+.page-section-header, .page-section-sub-header{
     background: #ffffff;
     min-height: 50px;
     width: 100%;
@@ -18,6 +18,10 @@ body{background-color:#3a88c5}.navbar-main{background:none;border:none;-webkit-b
     border-radius: 5px;
     margin: 10px 0 10px 0;
 }
+.page-section-sub-header{
+    font-size: 14px;
+    padding: 0 5px 0 5px;
+}
 .page-section-content{
     background: #ffffff;
     border-radius: 5px;
@@ -29,10 +33,9 @@ body{background-color:#3a88c5}.navbar-main{background:none;border:none;-webkit-b
     color: #3a88c5;
     margin: 0 auto;
 }
-.page-section-content thead{
-    font-weight: bold;
-}
-.delete-row-icon{
+.page-section-content thead{font-weight: bold;  }
+.row-icon-holder a{ padding-left: 20px}
+.row-icon{
     height: 20px;
     width: auto;
 }
