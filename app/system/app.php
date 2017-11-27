@@ -18,7 +18,7 @@ class App {
         $this->url = explode('/', $_GET['url']);
         $this->controller = empty($this->url[0]) ? 'dashboard' : $this->url[0];
         $this->view = str_replace('-','_', isset($this->url[1]) ? $this->url[1] : 'index');
-        $this->args = $this->getArgs();
+        $this->args = $this->getArgs(2);
         $this->datasource = new Database();
         $this->players = new PlayerManager($this->datasource);
     }
@@ -56,16 +56,19 @@ class App {
             $obj = substr($file, 0, -4);
             $controller = new $obj;
             $func = $this->view = method_exists($controller, $this->view) ? $this->view : 'index';
-            $view = $controller->$func($this->args);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $view->render();
-        }else{
-            echo '404';
+            $reflection = new ReflectionMethod($controller, $func);
+            if($reflection->isPublic()){
+                $view = $controller->$func($this->args);
+                /** @noinspection PhpUndefinedMethodInspection */
+                $view->render();
+                return;
+            }
         }
+        echo '404';
     }
 
     /**
-     * Returns the current connectec  client
+     * Returns the current connected client
      * @return Client client
      */
     public function getClient(){
@@ -102,12 +105,13 @@ class App {
 
     /**
      * Fetches the leftover arguments passed in the URL aside from the controller and the view
-     * If there are multiple arguments supplised an array is returned, a single value is returned otherwise
+     * If there are multiple arguments supplied an array is returned, a single value is returned otherwise
+     * @param $startIndex int the start index
      * @return array|mixed|null The argument(s)
      */
-    private function getArgs() {
+    public function getArgs($startIndex) {
         $rtn = array();
-        for ($i = 2; $i < count($this->url) && !empty($this->url[$i]); $i++)
+        for ($i = $startIndex; $i < count($this->url) && !empty($this->url[$i]); $i++)
             array_push($rtn, $this->url[$i]);
         if (($count = count($rtn)) > 0)
             return $count > 1 ? $rtn : $rtn[0];
