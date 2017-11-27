@@ -26,10 +26,8 @@
                             <label>Antwoorden:</label>
                             <ol>
                                 <li class="millionaire-correct-answer">1) <?php echo $dataRow['CorrectAnswer']; ?></li>
-                                <?php
-                                for($i = 1; $i < 4; $i++)
-                                    echo "<li class='millionaire-wrong-answer'>".($i+1).") ".$dataRow['WrongAnswer'.$i]."</li>";
-                                ?>
+                                <?php for($i = 1; $i < 4; $i++)
+                                    echo "<li class='millionaire-wrong-answer'>".($i+1).") ".$dataRow['WrongAnswer'.$i]."</li>"; ?>
                             </ol>
                         </div></td>
                     <td><?php echo MillionaireController::$difficulties[$dataRow['Difficulty']]; ?></td>
