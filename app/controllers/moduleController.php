@@ -41,15 +41,16 @@ class Module{
 
 class ModuleController extends Controller{
 
-    const MODULE_LIST = [
-        "millionaire" => "Manny Millionaire",
-        "catcher"     => "Office Catcher"
-    ];
+    private $moduleList;
 
     function __construct() {
         parent::__construct();
         if(!$this->valid)
             App::instance()->redirect('account', 'login');
+        $this->moduleList = [
+           "millionaire" => "Manny Millionaire",
+           "catcher"     => "Office Catcher"
+        ];
     }
 
     public function index() {
@@ -75,7 +76,7 @@ class ModuleController extends Controller{
     private function index_default(){
         $view = new View("index");
         $data = array();
-        foreach(self::MODULE_LIST as $ctrl => $name)
+        foreach($this->moduleList as $ctrl => $name)
             array_push($data, new Module($name, $ctrl));
         $view->attach('modules', $data);
         return $view;
