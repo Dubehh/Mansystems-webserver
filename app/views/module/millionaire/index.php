@@ -42,6 +42,9 @@
                 <?php }?>
             </tbody>
         </table>
+        <div class="table-footer">
+            <a class="btn btn-success" href="<?php echo _URL.'module/millionaire/add'?>"> <i class="fa fa-plus" aria-hidden="true"></i> Nieuw</a>
+        </div>
     </div>
     <div class="page-section-header">
         <div class="page-section-details">

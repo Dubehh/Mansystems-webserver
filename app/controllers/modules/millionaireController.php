@@ -37,11 +37,36 @@ class MillionaireController extends Controller{
     }
 
     public function add(){
+        $method = new Method($_POST);
+        if(!$method->isEmpty()){
+            $handler = App::instance()->getDataSource()->getHandler();
+            $handler->insertInto(self::TABLE)->values($method->getArray())->execute();
+            App::instance()->redirect('module/millionaire');
+        }
         return new View("add", "module/millionaire");
     }
 
+    public function delete($id){
+        if(isset($id) && $id!=null){
+            App::instance()->getDataSource()->getHandler()
+                ->deleteFrom(self::TABLE)
+                ->where('ID', $id)
+                ->execute();
+        }
+        App::instance()->redirect('module/millionaire');
+    }
+
     public function edit($id){
-        $view = new View("edit", "module/millionaire");
-        return $view;
+        if(isset($id) && $id !=null){
+            $view = new View("edit", "module/millionaire");
+            $handler = App::instance()->instance()->getDataSource()->getHandler()
+               ->from(self::TABLE)
+               ->where('ID', $id);
+            if($handler->count() > 0){
+                $view->attach('question', $handler->fetch('Question'));
+            }
+            return $view;
+        }
+        App::instance()->redirect('module/millionaire');
     }
 }
