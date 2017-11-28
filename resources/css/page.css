@@ -28,12 +28,8 @@ body{background-color:#3a88c5}.navbar-main{background:none;border:none;-webkit-b
     margin-bottom: 10px;
     padding: 10px;
 }
-.page-section-nav a{
-    margin: 0 10px 0 10px;
-}
-.table-nav a{
-    text-decoration: none;
-}
+.page-section-nav a{  margin: 0 10px 0 10px;  }
+.table-nav a{  text-decoration: none;  }
 .page-section-content table{
     font-family: "Roboto", sans-serif;
     font-size: 14px;
@@ -75,9 +71,7 @@ body{background-color:#3a88c5}.navbar-main{background:none;border:none;-webkit-b
     -webkit-box-shadow:0 0 7px rgba(0,0,0,.1)!important;-moz-box-shadow:0 0 7px rgba(0,0,0,.1)!important;box-shadow:0 0 10px rgba(0,0,0,.2)!important;
 }
 .table-expandable-result label{  display: block;  margin-top: 10px;}
-.table-expandable-column:hover > .table-expandable-result{
-    display: block;
-}
+.table-expandable-column:hover > .table-expandable-result{  display: block;  }
 .module-display-title{
     color: #51aaff;
     float: left;
