@@ -5,40 +5,6 @@
  * Date: 23-11-2017
  */
 
-class Module{
-    private $name;
-    private $controller;
-    private $color;
-
-    private static $id = -1;
-    private static $colors = array(
-        "#ffffff",
-        "#e0f0ff",
-        "#c9e5ff",
-        "#badcfc"
-    );
-
-    public function __construct($name, $controller){
-        self::$id = self::$id + 1 >= count(self::$colors) ? 0 : ++self::$id;
-        $this->name = $name;
-        $this->controller = $controller;
-        $this->color = self::$colors[self::$id];
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getController(){
-        return $this->controller;
-    }
-
-    public function getColor(){
-        return $this->color;
-    }
-}
-
-
 class ModuleController extends Controller{
 
     private $moduleList;
@@ -63,22 +29,38 @@ class ModuleController extends Controller{
                 require_once $ctrl;
                 $ctrlName = ucfirst($controller).'Controller';
                 $display = isset($url[2]) ? $url[2] : 'index';
+                /** @var TrackingController $ctrlObj */
                 $ctrlObj = new $ctrlName;
                 $method = method_exists($ctrlObj, $display) ? $display : 'index';
                 $reflection = new ReflectionMethod($ctrlObj, $method);
                 if($reflection->isPublic())
                     return $ctrlObj->$method($app->getArgs(3));
+                else return $ctrlObj->index();
+            }
+        }
+        return $this->index_default(false);
+    }
+
+    public function track($id){
+        if(isset($id) && $id != null){
+            $view = $this->index_default(true);
+            $player = App::instance()->getPlayerManager()->fetch('ID', $id);
+            if($player != null){
+                $view->attach('player', $player);
+                return $view;
             }
         }
         return $this->index_default();
     }
 
-    private function index_default(){
+    private function index_default($trackingRequest = false){
+        Module::resetColors();
         $view = new View("index");
         $data = array();
         foreach($this->moduleList as $ctrl => $name)
             array_push($data, new Module($name, $ctrl));
         $view->attach('modules', $data);
+        $view->attach('isTrackingView', $trackingRequest);
         return $view;
     }
 }

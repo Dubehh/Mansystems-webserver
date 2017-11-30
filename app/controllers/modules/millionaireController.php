@@ -6,7 +6,7 @@
  * Date: 27-11-2017
  * Time: 15:37
  */
-class MillionaireController extends Controller{
+class MillionaireController extends TrackingController{
 
     const ROWS_PER_PAGE = 25;
 
@@ -58,15 +58,34 @@ class MillionaireController extends Controller{
 
     public function edit($id){
         if(isset($id) && $id !=null){
-            $view = new View("edit", "module/millionaire");
-            $handler = App::instance()->instance()->getDataSource()->getHandler()
-               ->from(self::TABLE)
-               ->where('ID', $id);
-            if($handler->count() > 0){
-                $view->attach('question', $handler->fetch('Question'));
+            $method = new Method($_POST);
+            if(!$method->isEmpty()){
+                App::instance()->getDataSource()->getHandler()
+                    ->update(self::TABLE)
+                    ->set($method->getArray())
+                    ->where('ID', $id)
+                    ->execute();
+                App::instance()->redirect('module/millionaire');
+            }else{
+                $view = new View("edit", "module/millionaire");
+                $handler = App::instance()->instance()->getDataSource()->getHandler()
+                    ->from(self::TABLE)
+                    ->where('ID', $id);
+                if($handler->count() > 0) {
+                    $view->attach('difficulty', $handler->fetch('Difficulty'));
+                    $view->attach('data', $handler->fetchAll()[0]);
+                }
+                return $view;
             }
-            return $view;
         }
-        App::instance()->redirect('module/millionaire');
+        return null;
     }
+
+    protected function tracking($player) {
+        $view = new View("tracking", "module/millionaire");
+        $view->attach('player', $player);
+        return $view;
+    }
+
+
 }
