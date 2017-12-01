@@ -17,6 +17,8 @@ class MillionaireController extends TrackingController{
     );
 
     const TABLE = "module_millionaire";
+    const TRACKING_TABLE = "tracking_millionaire";
+
     function __construct() {
         parent::__construct();
     }
@@ -81,9 +83,24 @@ class MillionaireController extends TrackingController{
         return null;
     }
 
+    /**
+     * Returns the tracking view for this module
+     * @param $player Player
+     * @return View View
+     */
     protected function tracking($player) {
         $view = new View("tracking", "module/millionaire");
+        $pagination = new Pagination();
         $view->attach('player', $player);
+        $data = App::instance()->getDataSource()->getHandler()
+           ->from(self::TRACKING_TABLE)
+           ->where('PlayerID', $player->getID())
+           ->limit(self::ROWS_PER_PAGE)
+           ->offset(($pagination->getCurrent()-1) * self::ROWS_PER_PAGE)
+           ->orderBy('ID DESC');
+        $view->attach('data', $data->fetchAll());
+        $view->attach('results', $data->getIterator()->rowCount());
+        $view->attach('page', $pagination);
         return $view;
     }
 
