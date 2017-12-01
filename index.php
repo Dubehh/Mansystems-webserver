@@ -17,10 +17,10 @@ require_once _ROOT._LOADER_MODEL;
     <meta charset="UTF-8">
     <title>Manny</title>
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <?php
-    //Load CSS files
+    //Load local CSS files
     ResourceLoader::loadCSS("reset");
-    ResourceLoader::loadCSS("font_awesome");
     ResourceLoader::loadCSS("bootstrap");
     ResourceLoader::loadCSS("page");
     ?>
@@ -43,8 +43,8 @@ require_once _ROOT._LOADER_MODEL;
                 $auth = new Auth();
                 if($auth->valid()){?>
                 <ul id="main-nav" class="nav navbar-nav navbar-right">
-                    <li><a class="nav-item" href="#">Dashboard</a></li>
-                    <li><a class="nav-item" href="#">Modules</a></li>
+                    <li><a class="nav-item" href="<?php echo _URL.'dashboard'?>">Dashboard</a></li>
+                    <li><a class="nav-item" href="<?php echo _URL.'module'?>">Modules</a></li>
                     <li><a class="nav-item" href="<?php echo _URL.'account/logout'?>">Uitloggen</a></li>
                 </ul>
                 <?php }?>

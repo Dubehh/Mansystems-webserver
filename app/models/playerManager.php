@@ -20,11 +20,12 @@ class PlayerManager {
 
     /**
      * Fetches the player with the given UUID if it exists
-     * @param $uuid String UUID
+     * @param $key mixed Database key
+     * @param $identifier mixed value that relates to the given key
      * @return null|Player Player if it exists, null if it doesnt
      */
-    public function fetch($uuid){
-        $query = $this->handler->from(self::TABLE)->where('UUID', $uuid);
+    public function fetch($key, $identifier){
+        $query = $this->handler->from(self::TABLE)->where($key, $identifier);
         if($query->count()>0)
             return new Player(
                 $query->fetch('ID'),
@@ -52,7 +53,7 @@ class PlayerManager {
      * @throws Exception throws when an SQL error occurs
      */
     public function create($name, $uuid){
-        if(($player = $this->fetch($uuid)) == null){
+        if(($player = $this->fetch('UUID', $uuid)) == null){
             $id = $this->handler->insertInto(self::TABLE)->values(array(
                 "Name" => $name,
                 "UUID" => $uuid,
