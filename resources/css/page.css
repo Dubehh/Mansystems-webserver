@@ -433,8 +433,12 @@ body {
     height : 100%;
     width  : auto;
 }
+#error-404{   text-align: center;  }
+#error-404 img { max-width:350px}
+
 @media (max-width : 540px) {
     .module-tracking-img{ display: none}
     .module-tracking-info{ margin: 0 auto}
     .module-display-icon{ display: none}
+    #error-404 img{ max-width: 250px}
 }
