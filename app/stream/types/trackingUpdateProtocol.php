@@ -1,11 +1,12 @@
 <?php
-/**
- * Project Mansystems
- * Author: Eelco
- * Date: 14-11-2017
- */
 
-class Request extends Stream {
+/**
+ * Created by PhpStorm.
+ * User: Eelco
+ * Date: 2-12-2017
+ * Time: 16:33
+ */
+class TrackingUpdateProtocol extends Stream {
 
     private $method;
     function __construct($resolver, $data) {

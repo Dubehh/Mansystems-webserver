@@ -1,11 +1,34 @@
 <?php
+
 /**
- * Project Mansystems
- * Author: Eelco
- * Date: 14-11-2017
+ * Created by PhpStorm.
+ * User: Eelco
+ * Date: 2-12-2017
+ * Time: 16:33
  */
 
-class Response extends Stream implements IStreamResponse {
+abstract class ResponseHandler {
+
+    const RESPONSE_REFERENCE = "responseHandler";
+
+    protected $data;
+    public function __construct($data){
+        $this->data = $data;
+    }
+
+    public abstract function respond();
+
+    /**
+     * Sends an encoded response to the client
+     * @param $array Mixed response
+     */
+    protected function send($array){
+        echo json_encode($array);
+    }
+}
+
+class DataFetchProtocol extends Stream implements IStreamResponse {
+
     /**
      * @var ResponseHandler
      */
@@ -33,5 +56,4 @@ class Response extends Stream implements IStreamResponse {
         if($this->handler!=null)
             $this->handler->respond();
     }
-
 }
