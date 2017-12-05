@@ -64,7 +64,8 @@ class App {
                 return;
             }
         }
-        echo '404';
+        $fallback = new View(View::ERROR);
+        $fallback->render();
     }
 
     /**
