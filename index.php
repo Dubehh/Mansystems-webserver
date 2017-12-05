@@ -29,7 +29,7 @@ require_once _ROOT._LOADER_MODEL;
     <nav class="navbar-main navbar navbar-inverse navbar-fixed-top">
         <div class="navigation-header container-fluid">
             <div class="navbar-header">
-                <a class="header-icon navbar-brand" href="#">
+                <a class="header-icon navbar-brand" href="<?php echo _URL.'dashboard'?>">
                     <?php ResourceLoader::loadIMG('manny_logo.png');?>
                 </a>
             </div>
