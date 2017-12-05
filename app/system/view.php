@@ -7,11 +7,18 @@
 
 class View {
 
+    const ERROR = "404";
+
     private $name;
     private $controller;
     public function __construct($name = '', $controller = ''){
-        $this->name = empty($name) ? App::instance()->getView() : $name;
-        $this->controller = empty($controller) ? App::instance()->getController() : $controller;
+        if($name === self::ERROR) {
+            $this->name = self::ERROR;
+            $this->controller = null;
+        }else{
+            $this->name = empty($name) ? App::instance()->getView() : $name;
+            $this->controller = empty($controller) ? App::instance()->getController() : $controller;
+        }
     }
 
     /**
@@ -28,6 +35,6 @@ class View {
      * Renders the view
      */
     public function render(){
-        require_once _VIEWS.$this->controller.'/'.$this->name.'.php';
+        require_once _VIEWS.($this->controller != null ? $this->controller.'/' : '').$this->name.'.php';
     }
-} 
+}
