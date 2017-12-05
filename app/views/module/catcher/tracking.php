@@ -1,6 +1,6 @@
 <div class="page-section">
     <div class="page-section-header">
-        Tracking gegevens <?php echo ' - ' . $this->results; ?> weergeven
+        Catcher - Tracking gegevens <?php echo ' - ' . $this->results; ?> weergeven
         <div class="module-tracking-overview">
             <div class="module-tracking-img">
                 <?php ResourceLoader::loadIMG('tracking.png'); ?>
@@ -36,6 +36,7 @@
                 <th>Gewonnen Monny</th>
                 <th>Gevangen klanten</th>
                 <th>Gevangen nepklanten</th>
+                <th>Datum toegevoegd</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +48,7 @@
                     <td><?php echo $row['CoinsEarned']; ?></td>
                     <td><?php echo $row['LogosCaught']; ?></td>
                     <td><?php echo $row['FakeLogosCaught']; ?></td>
+                    <td><?php echo $row['DateAdded']; ?></td>
                 </tr>
             <?php } ?>
             </tbody>
