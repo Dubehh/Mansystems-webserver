@@ -1,6 +1,6 @@
 <div class="page-section">
     <div class="page-section-header">
-        Tracking gegevens <?php echo ' - ' . $this->results; ?> weergeven
+        Manny Millionaire - Tracking gegevens <?php echo ' - ' . $this->results; ?> weergeven
         <div class="module-tracking-overview">
             <div class="module-tracking-img">
                 <?php ResourceLoader::loadIMG('tracking.png'); ?>
