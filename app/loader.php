@@ -18,7 +18,8 @@ define("_AUTOLOAD_FOLDERS", array(
     "models",
     "system",
     "system/fluent",
-    "stream"
+    "stream",
+    "stream/types"
 ));
 //Register autoloader
 spl_autoload_register(function($class){
