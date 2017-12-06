@@ -6,7 +6,7 @@
  * Date: 2-12-2017
  * Time: 16:33
  */
-class TrackingUpdateProtocol extends Stream {
+class UpdateProtocol extends Stream {
 
     private $method;
     function __construct($resolver, $data) {

@@ -6,7 +6,7 @@
  * Date: 2-12-2017
  * Time: 16:34
  */
-class ImageUploadProtocol extends Stream{
+class UploadProtocol extends Stream{
 
     private $handler;
     function __construct($resolver, $data) {

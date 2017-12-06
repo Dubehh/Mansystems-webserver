@@ -27,7 +27,7 @@ abstract class ResponseHandler {
     }
 }
 
-class DataFetchProtocol extends Stream implements IStreamResponse {
+class FetchProtocol extends Stream implements IStreamResponse {
 
     /**
      * @var ResponseHandler
