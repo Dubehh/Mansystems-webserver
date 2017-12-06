@@ -16,10 +16,11 @@ define("_JS", "js");
 define("_IMG", "img");
 define("_AUTOLOAD_FOLDERS", array(
     "models",
+        "models/util",
     "system",
-    "system/fluent",
+        "system/fluent",
     "stream",
-    "stream/types"
+        "stream/types"
 ));
 //Register autoloader
 spl_autoload_register(function($class){

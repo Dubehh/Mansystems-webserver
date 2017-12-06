@@ -36,6 +36,7 @@
                 <th>Gewonnen Monny</th>
                 <th>Gevangen klanten</th>
                 <th>Gevangen nepklanten</th>
+                <th>Aantal seconden gespeeld</th>
                 <th>Datum toegevoegd</th>
             </tr>
             </thead>
@@ -43,11 +44,12 @@
             <?php foreach ($this->data as $row) { ?>
                 <tr>
                     <td><?php echo $row['ID']; ?></td>
-                    <td><?php echo $row['Score'] ?></td>
-                    <td><?php echo $row['ExperienceEarned']; ?></td>
-                    <td><?php echo $row['CoinsEarned']; ?></td>
+                    <td><?php echo $row['Points'] ?></td>
+                    <td><?php echo $row['ExperienceGained']; ?></td>
+                    <td><?php echo $row['Coins']; ?></td>
                     <td><?php echo $row['LogosCaught']; ?></td>
                     <td><?php echo $row['FakeLogosCaught']; ?></td>
+                    <td><?php echo $row['TimePlayedSeconds']; ?></td>
                     <td><?php echo $row['DateAdded']; ?></td>
                 </tr>
             <?php } ?>
