@@ -13,9 +13,9 @@ abstract class TrackingController extends Controller {
     }
 
     public function track($id){
-        if(isset($id) && $id != null){
+        if(Validate::notNull($id)){
             $player = App::instance()->getPlayerManager()->fetch('ID', $id);
-            if($player!=null)
+            if(Validate::notNull($player))
                 return $this->tracking($player);
         }
         return $this->index();
