@@ -276,8 +276,6 @@ body {
     margin-left : 10px;
     width       : auto;
 }
-
-.row-icon-holder { text-align: center;}
 .row-icon-holder a:hover {
     opacity : .8
 }

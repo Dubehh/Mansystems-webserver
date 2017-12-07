@@ -18,6 +18,7 @@ require_once _ROOT._LOADER_MODEL;
     <title>Manny</title>
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="https://www.mansystems.com/wp-content/uploads/2016/12/favicon.png">
     <?php
     //Load local CSS files
     ResourceLoader::loadCSS("reset");
