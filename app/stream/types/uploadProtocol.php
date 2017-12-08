@@ -19,10 +19,11 @@ class UploadProtocol extends Stream{
     public function onStreamRequestReceive() {
         $fileData = new Method($_FILES);
         $data = new Method($_POST);
-        if(!$fileData->isEmpty() && !$data->isEmpty() && ($folder = $data->fetch('targetFolder', true))!=null){
+        if(!$fileData->isEmpty() && !$data->isEmpty() && ($target = $data->fetch('targetFolder', true))!=null){
             $file = $fileData->fetch('file');
             $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/'.self::UPLOAD_FOLDER.'/';
             $folder = $this->forceCreate($folder);
+            $folder = $this->forceCreate($folder.$target.'/');
             $folder = $this->forceCreate($folder.$data->fetch('UUID').'/');
             $name = substr(Security::getToken(), 0, 15).'.'.explode('.', $file['name'])[1];
             move_uploaded_file($file['tmp_name'], $folder.$name);
