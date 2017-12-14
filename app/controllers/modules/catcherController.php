@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Eelco & Hugo
+ * Project Mansystems
+ * Author: Eelco & Hugo
  * Date: 2-12-2017
- * Time: 15:34
  */
+
 class CatcherController extends TrackingController{
 
     const ROWS_PER_PAGE = 25;

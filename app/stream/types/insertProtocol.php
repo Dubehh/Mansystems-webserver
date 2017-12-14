@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: hugok
+ * Project Mansystems
+ * Author: Hugo
  * Date: 7-12-2017
- * Time: 10:42
  */
 
 class InsertProtocol extends Stream {

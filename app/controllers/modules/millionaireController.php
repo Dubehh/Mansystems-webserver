@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Eelco
+ * Project Mansystems
+ * Author: Eelco
  * Date: 27-11-2017
- * Time: 15:37
  */
+
 class MillionaireController extends TrackingController{
 
     const ROWS_PER_PAGE = 25;
