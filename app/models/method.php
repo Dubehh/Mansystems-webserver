@@ -25,6 +25,10 @@ class Method {
         return $val;
     }
 
+    public function set($key, $val){
+        $this->array[$key] = $val;
+    }
+
     public function has($key){
         return isset($this->array[$key]);
     }
