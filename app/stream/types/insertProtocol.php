@@ -8,7 +8,6 @@
 
 class InsertProtocol extends Stream {
 
-    private $method;
     function __construct($resolver, $data) {
         parent::__construct($resolver, $data);
     }
