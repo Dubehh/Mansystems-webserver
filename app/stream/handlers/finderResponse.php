@@ -16,15 +16,17 @@ class FinderResponse extends ResponseHandler {
     public function respond() {
         $response = array();
         $data = App::instance()->getDataSource()->getHandler()
-            ->from(self::TABLE_NAME);
+            ->from(self::TABLE_NAME)
+            ->innerJoin("onlineplayertable ON module_finder.playerid = onlineplayertable.id")
+            ->where('onlineplayertable.uuid != ?', $this->data['uuid'])
+            ->select("onlineplayertable.uuid");
 
+        $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/uploads/finder/';
         $index = 0;
         foreach ($data->getIterator() as $row) {
-
-            $response[$index] = [
-                "name" => $row['Name'],
-                "description" => $row['Description'],
-            ];
+            $response[$index] = $row;
+            $path = $folder.$row['uuid'].'/';
+            $response[$index]['pictures'] = array_diff(scandir($path), array('.', '..'));
             $index++;
         }
         $this->send($response);
