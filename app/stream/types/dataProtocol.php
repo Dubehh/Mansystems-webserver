@@ -39,8 +39,8 @@ class DataProtocol extends Stream implements IStreamResponse {
 
     public function onStreamRequestReceive() {
         $method = new Method($this->data);
-        $handler = $method->fetch(DataHandler::RESPONSE_REFERENCE, true, null);
-        $type = $method->fetch(DataHandler::RESPONSE_TYPE, true, null);
+        $handler = $method->fetch(DataHandler::RESPONSE_REFERENCE, true);
+        $type = $method->fetch(DataHandler::RESPONSE_TYPE, true);
         if($handler != null && $type != null){
             $folder = _STREAM_FOLDER.'/handlers/'.strtolower($type).'/';
             if(file_exists($file = $folder.strtolower($handler).'.php')){
