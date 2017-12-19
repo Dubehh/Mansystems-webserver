@@ -7,9 +7,9 @@
  */
 
 
-abstract class ResponseHandler {
+abstract class HandshakeHandler {
 
-    const RESPONSE_REFERENCE = "responseHandler";
+    const RESPONSE_REFERENCE = "handler";
 
     protected $data;
     public function __construct($data){
@@ -30,7 +30,7 @@ abstract class ResponseHandler {
 class FetchProtocol extends Stream implements IStreamResponse {
 
     /**
-     * @var ResponseHandler
+     * @var HandshakeHandler
      */
     private $handler;
     function __construct($resolver, $data) {
@@ -40,7 +40,7 @@ class FetchProtocol extends Stream implements IStreamResponse {
 
     public function onStreamRequestReceive() {
         $method = new Method($this->data);
-        $handlerType = $method->fetch(ResponseHandler::RESPONSE_REFERENCE, true, null);
+        $handlerType = $method->fetch(HandshakeHandler::RESPONSE_REFERENCE, true, null);
         if($handlerType != null){
             $folder = _STREAM_FOLDER.'/handlers/';
             $file = $handlerType.'Response';

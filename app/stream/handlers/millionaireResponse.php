@@ -5,7 +5,7 @@
  * Date: 23-11-2017
  */
 
-class MillionaireResponse extends ResponseHandler {
+class MillionaireHandshake extends HandshakeHandler {
 
     const TABLE_NAME = "module_millionaire";
 

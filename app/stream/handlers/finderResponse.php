@@ -5,7 +5,7 @@
  * Date: 23-11-2017
  */
 
-class FinderResponse extends ResponseHandler {
+class FinderHandshake extends HandshakeHandler {
 
     const TABLE_NAME = "module_finder";
 
