@@ -6,7 +6,7 @@
  * Date: 2-12-2017
  */
 
-class UpdateProtocol extends Stream {
+class TrackingProtocol extends Stream {
 
     function __construct($resolver, $data) {
         parent::__construct($resolver, $data);

@@ -5,7 +5,7 @@
  * Date: 23-11-2017
  */
 
-class FinderHandshake extends HandshakeHandler {
+class FinderProfiles extends DataHandler implements IStreamResponse{
 
     const TABLE_NAME = "module_finder";
 

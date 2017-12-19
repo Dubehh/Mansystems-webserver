@@ -5,7 +5,7 @@
  * Date: 23-11-2017
  */
 
-class MillionaireHandshake extends HandshakeHandler {
+class MillionaireQuestions extends DataHandler implements IStreamResponse {
 
     const TABLE_NAME = "module_millionaire";
 

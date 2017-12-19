@@ -7,16 +7,15 @@
  */
 
 
-abstract class HandshakeHandler {
+abstract class DataHandler {
 
     const RESPONSE_REFERENCE = "handler";
+    const RESPONSE_TYPE = "handlerType";
 
     protected $data;
     public function __construct($data){
         $this->data = $data;
     }
-
-    public abstract function respond();
 
     /**
      * Sends an encoded response to the client
@@ -27,10 +26,10 @@ abstract class HandshakeHandler {
     }
 }
 
-class FetchProtocol extends Stream implements IStreamResponse {
+class DataProtocol extends Stream implements IStreamResponse {
 
     /**
-     * @var HandshakeHandler
+     * @var DataHandler
      */
     private $handler;
     function __construct($resolver, $data) {
@@ -40,20 +39,23 @@ class FetchProtocol extends Stream implements IStreamResponse {
 
     public function onStreamRequestReceive() {
         $method = new Method($this->data);
-        $handlerType = $method->fetch(HandshakeHandler::RESPONSE_REFERENCE, true, null);
-        if($handlerType != null){
-            $folder = _STREAM_FOLDER.'/handlers/';
-            $file = $handlerType.'Response';
-            if(file_exists($folder.$file.'.php')){
-                require_once $folder.$file.'.php';
-                $obj = ucfirst($file);
+        $handler = $method->fetch(DataHandler::RESPONSE_REFERENCE, true, null);
+        $type = $method->fetch(DataHandler::RESPONSE_TYPE, true, null);
+        if($handler != null && $type != null){
+            $folder = _STREAM_FOLDER.'/handlers/'.strtolower($type).'/';
+            if(file_exists($file = $folder.strtolower($handler).'.php')){
+                /** @noinspection PhpIncludeInspection */
+                require_once $file;
+                $obj = ucfirst($handler);
                 $this->handler = new $obj($method->getArray());
             }
         }
     }
 
     public function respond() {
-        if($this->handler!=null)
+        if($this->handler==null)return;
+        /** @var $handler IStreamResponse*/
+        if($this->handler instanceof IStreamResponse)
             $this->handler->respond();
     }
 }
