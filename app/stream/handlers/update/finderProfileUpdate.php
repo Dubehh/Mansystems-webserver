@@ -5,7 +5,7 @@
  * Date: 19-12-2017
  */
 
-class FinderProfileInsert extends DataHandler{
+class FinderProfileUpdate extends DataHandler{
 
     function __construct($data) {
         $method = new Method($data);
