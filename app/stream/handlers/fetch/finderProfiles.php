@@ -18,7 +18,6 @@ class FinderProfiles extends DataHandler implements IStreamResponse{
         $data = App::instance()->getDataSource()->getHandler()
             ->from(self::TABLE_NAME)
             ->innerJoin("onlineplayertable ON module_finder.playerid = onlineplayertable.id")
-            ->where('onlineplayertable.uuid != ?', $this->data['uuid'])
             ->select("onlineplayertable.uuid");
 
         $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/uploads/finder/';
