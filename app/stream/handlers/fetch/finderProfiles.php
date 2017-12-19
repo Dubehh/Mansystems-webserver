@@ -5,7 +5,7 @@
  * Date: 23-11-2017
  */
 
-class FinderResponse extends ResponseHandler {
+class FinderProfiles extends DataHandler implements IStreamResponse{
 
     const TABLE_NAME = "module_finder";
 
@@ -18,7 +18,6 @@ class FinderResponse extends ResponseHandler {
         $data = App::instance()->getDataSource()->getHandler()
             ->from(self::TABLE_NAME)
             ->innerJoin("onlineplayertable ON module_finder.playerid = onlineplayertable.id")
-            ->where('onlineplayertable.uuid != ?', $this->data['uuid'])
             ->select("onlineplayertable.uuid");
 
         $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/uploads/finder/';

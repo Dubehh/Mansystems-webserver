@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Eelco
+ * Project Mansystems
+ * Author: Eelco
  * Date: 2-12-2017
- * Time: 16:34
  */
+
 class UploadProtocol extends Stream{
 
     const UPLOAD_FOLDER = "uploads";

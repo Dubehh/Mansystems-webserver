@@ -5,9 +5,11 @@
  * Date: 7-12-2017
  */
 
-class DownloadProtocol extends Stream{
+class DownloadProtocol extends Stream implements IStreamResponse{
 
     const UPLOAD_FOLDER = "uploads";
+
+    private $fileName;
 
     function __construct($resolver, $data) {
         parent::__construct($resolver, $data);
@@ -19,12 +21,15 @@ class DownloadProtocol extends Stream{
         $uuid = $data->fetch('UUID');
         $target = $data->fetch('targetFolder');
         $fileName = $data->fetch('name');
-        if(file_exists(($fileName = $folder.$target.'/'.$uuid.'/'.$fileName))){
-            $extension = str_replace('jpg', 'jpeg', explode('.', $fileName)[1]);
-            header("Content-Type: image/".$extension);
-            header("Content-Length: " . filesize($fileName));
-            readfile($fileName, true);
-            exit;
-        }
+        $this->fileName = file_exists(($fileName = $folder.$target.'/'.$uuid.'/'.$fileName)) ? $fileName : null;
+    }
+
+    public function respond() {
+        if($this->fileName==null)return;
+        $extension = str_replace('jpg', 'jpeg', explode('.', $this->fileName)[1]);
+        header("Content-Type: image/".$extension);
+        header("Content-Length: " . filesize($this->fileName));
+        readfile($this->fileName, true);
+        exit;
     }
 } 
