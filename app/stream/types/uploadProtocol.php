@@ -28,8 +28,6 @@ class UploadProtocol extends Stream{
             $name = substr(Security::getToken(), 0, 15).'.'.explode('.', $file['name'])[1];
             move_uploaded_file($file['tmp_name'], $folder.$name);
             echo $name;
-        }else{
-            echo 'empty array';
         }
     }
 
