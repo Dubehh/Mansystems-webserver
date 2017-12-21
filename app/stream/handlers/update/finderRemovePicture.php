@@ -5,7 +5,7 @@
  * Date: 19-12-2017
  */
 
-class finderRemovePicture extends DataHandler {
+class FinderRemovePicture extends DataHandler {
 
     function __construct($data) {
         $method = new Method($data);
