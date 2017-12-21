@@ -1,26 +1,32 @@
 <?php
 /**
  * Project Mansystems
- * Author: Eelco
+ * Author: Hugo
  * Date: 19-12-2017
  */
 
-class FinderProfileUpdate extends DataHandler{
+class FinderProfileUpdate extends DataHandler {
 
     function __construct($data) {
         $method = new Method($data);
-        $targetTable = $method->fetch("targetTable", true);
+        $targetTable = "module_finder";
+        $name = $method->fetch("name", true);
         $uid = $method->fetch("uid", true);
+        $player = App::instance()->getPlayerManager()->create($name, $uid);
 
-        if($targetTable != null){
+        if ($targetTable != null) {
             $handler = App::instance()->getDataSource()->getHandler();
-            $playerID = $handler
-                ->from(PlayerManager::TABLE)
-                ->select("ID")
-                ->where("UUID", $uid)
-                ->fetch('ID');
+            $playerID = $player->getID();
 
-            $handler->update($targetTable)->set($method->getArray())->where("PlayerID", $playerID)->execute();
+            $action = strtolower($method->fetch("action", true));
+            if ($action == "insert") {
+                $method->set("PlayerID", $playerID);
+                $handler->insertInto($targetTable)->values($method->getArray())->execute();
+            } else if ($action == "update")
+                $handler->update($targetTable)->set($method->getArray())->where("PlayerID", $playerID)->execute();
+            else {
+                // Delete
+            }
         }
     }
 } 
