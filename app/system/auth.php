@@ -8,7 +8,7 @@
 class Auth {
 
     const SESSION_KEY = "client";
-    const DB_TABLE = "onlineLoginTable";
+    const DB_TABLE = "online_accounts";
     const TIME_OUT = 1800;
 
     /**
