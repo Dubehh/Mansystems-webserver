@@ -15,10 +15,11 @@ class FinderProfiles extends DataHandler implements IStreamResponse{
 
     public function respond() {
         $response = array();
+        $playerTable = PlayerManager::TABLE;
         $data = App::instance()->getDataSource()->getHandler()
             ->from(self::TABLE_NAME)
-            ->innerJoin("onlineplayertable ON module_finder.playerid = onlineplayertable.id")
-            ->select("onlineplayertable.uuid");
+            ->innerJoin("$playerTable ON " . FinderProfiles::TABLE_NAME . ".playerid = $playerTable.id")
+            ->select("$playerTable.uuid");
 
         $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/uploads/finder/';
         $index = 0;
