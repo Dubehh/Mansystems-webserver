@@ -9,7 +9,7 @@
 class CatcherController extends TrackingController{
 
     const ROWS_PER_PAGE = 25;
-    const TRACKING_TABLE = "tracking_Catcher";
+    const TRACKING_TABLE = "tracking_catcher";
 
     public function __construct() {
         parent::__construct();
