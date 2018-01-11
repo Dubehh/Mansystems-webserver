@@ -7,7 +7,7 @@
 
 class DownloadProtocol extends Stream implements IStreamResponse{
 
-    const UPLOAD_FOLDER = "uploads";
+    const UPLOAD_FOLDER = "upload";
 
     private $fileName;
 

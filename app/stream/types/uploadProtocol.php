@@ -8,7 +8,7 @@
 
 class UploadProtocol extends Stream{
 
-    const UPLOAD_FOLDER = "uploads";
+    const UPLOAD_FOLDER = "upload";
 
     private $handler;
     function __construct($resolver, $data) {
@@ -33,7 +33,7 @@ class UploadProtocol extends Stream{
 
     private function forceCreate($folder){
         if(!file_exists($folder))
-            mkdir($folder, 0777, true);
+            mkdir($folder, 0777);
         return $folder;
     }
 
