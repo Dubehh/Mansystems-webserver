@@ -43,7 +43,7 @@ class DataProtocol extends Stream implements IStreamResponse {
         $type = $method->fetch(DataHandler::RESPONSE_TYPE, true);
         if($handler != null && $type != null){
             $folder = _STREAM_FOLDER.'/handlers/'.strtolower($type).'/';
-            if(file_exists($file = $folder.strtolower($handler).'.php')){
+            if(file_exists($file = $folder.$handler.'.php')){
                 /** @noinspection PhpIncludeInspection */
                 require_once $file;
                 $obj = ucfirst($handler);

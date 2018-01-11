@@ -29,7 +29,7 @@ class TrackingRequest {
         $this->name   = $method->fetch(self::PLAYER_NAME, true, null);
         $this->uid    = $method->fetch(self::PLAYER_UID, true, null);
         $this->table  = $method->fetch(self::TABLE_ID, true, null);
-        $this->table  = 'tracking_'.$this->table;
+        $this->table  = 'tracking_'.strtolower($this->table);
     }
 
     /**

@@ -7,7 +7,7 @@
 
 class PlayerManager {
 
-    const TABLE = "onlinePlayerTable";
+    const TABLE = "online_players";
     private $handler;
 
     /**
