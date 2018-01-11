@@ -21,7 +21,7 @@ class UploadProtocol extends Stream{
         $data = new Method($_POST);
         if(!$fileData->isEmpty() && !$data->isEmpty() && ($target = $data->fetch('targetFolder', true))!=null){
             $file = $fileData->fetch('file');
-            $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/'.self::UPLOAD_FOLDER.'/';
+            $folder = $_SERVER['DOCUMENT_ROOT'].'/'.self::UPLOAD_FOLDER.'/';
             $folder = $this->forceCreate($folder);
             $folder = $this->forceCreate($folder.$target.'/');
             $folder = $this->forceCreate($folder.$data->fetch('UUID').'/');

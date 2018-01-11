@@ -17,7 +17,7 @@ class DownloadProtocol extends Stream implements IStreamResponse{
 
     public function onStreamRequestReceive() {
         $data = new Method($this->data);
-        $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/'.self::UPLOAD_FOLDER.'/';
+        $folder = $_SERVER['DOCUMENT_ROOT'].'/'.self::UPLOAD_FOLDER.'/';
         $uuid = $data->fetch('UUID');
         $target = $data->fetch('targetFolder');
         $fileName = $data->fetch('name');

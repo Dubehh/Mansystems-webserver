@@ -6,3 +6,4 @@ RewriteCond %(REQUEST_FILENAME} !-f
 RewriteCond %(REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png|php)$ [NC]
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L,T=text/css]
+Options -Indexes
