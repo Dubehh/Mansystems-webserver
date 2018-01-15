@@ -36,4 +36,13 @@ class Method {
     public function isEmpty(){
         return empty($this->array);
     }
+
+    public function format(){
+        $array = array();
+        foreach($this->getArray() as $key=>$val){
+            $array[$key] = is_string($val) ?
+                htmlentities(htmlspecialchars($val)) : $val;
+        }
+        $this->array = $array;
+    }
 } 
