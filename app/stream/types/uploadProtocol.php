@@ -8,7 +8,7 @@
 
 class UploadProtocol extends Stream{
 
-    const UPLOAD_FOLDER = "uploads";
+    const UPLOAD_FOLDER = "upload";
 
     private $handler;
     function __construct($resolver, $data) {
@@ -21,7 +21,7 @@ class UploadProtocol extends Stream{
         $data = new Method($_POST);
         if(!$fileData->isEmpty() && !$data->isEmpty() && ($target = $data->fetch('targetFolder', true))!=null){
             $file = $fileData->fetch('file');
-            $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/'.self::UPLOAD_FOLDER.'/';
+            $folder = $_SERVER['DOCUMENT_ROOT'].'/'.self::UPLOAD_FOLDER.'/';
             $folder = $this->forceCreate($folder);
             $folder = $this->forceCreate($folder.$target.'/');
             $folder = $this->forceCreate($folder.$data->fetch('UUID').'/');
@@ -33,7 +33,7 @@ class UploadProtocol extends Stream{
 
     private function forceCreate($folder){
         if(!file_exists($folder))
-            mkdir($folder, 0777, true);
+            mkdir($folder, 0777);
         return $folder;
     }
 

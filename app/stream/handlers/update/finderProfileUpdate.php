@@ -8,6 +8,7 @@
 class FinderProfileUpdate extends DataHandler {
 
     function __construct($data) {
+        parent::__construct($data);
         $method = new Method($data);
         $targetTable = "module_finder";
         $name = $method->fetch("name", true);
@@ -17,8 +18,8 @@ class FinderProfileUpdate extends DataHandler {
         if ($targetTable != null) {
             $handler = App::instance()->getDataSource()->getHandler();
             $playerID = $player->getID();
-
             $action = strtolower($method->fetch("action", true));
+            $method->format();
             if ($action == "insert") {
                 $method->set("PlayerID", $playerID);
                 $handler->insertInto($targetTable)->values($method->getArray())->execute();

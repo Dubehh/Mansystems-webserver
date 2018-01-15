@@ -20,8 +20,7 @@ class FinderProfiles extends DataHandler implements IStreamResponse{
             ->from(self::TABLE_NAME)
             ->innerJoin("$playerTable ON " . FinderProfiles::TABLE_NAME . ".playerid = $playerTable.id")
             ->select("$playerTable.uuid");
-
-        $folder = dirname($_SERVER['DOCUMENT_ROOT']).'/uploads/finder/';
+        $folder = $_SERVER['DOCUMENT_ROOT'].'/upload/finder/';
         $index = 0;
         foreach ($data->getIterator() as $row) {
             $response[$index] = $row;

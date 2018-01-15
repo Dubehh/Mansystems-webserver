@@ -10,7 +10,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-question" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="Question"  value="<?php echo $this->data['Question'];?>" placeholder="Typ hier de vraag"/>
+                            <input type="text" class="form-control" name="Question"  value="<?php echo html_entity_decode($this->data['Question']);?>" placeholder="Typ hier de vraag"/>
                         </div>
                     </div>
                 </div>
@@ -41,26 +41,26 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-check" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="CorrectAnswer" value="<?php echo $this->data['CorrectAnswer'];?>" placeholder="Typ hier het juiste antwoord"/>
+                            <input type="text" class="form-control" name="CorrectAnswer" value="<?php echo html_entity_decode($this->data['CorrectAnswer']);?>" placeholder="Typ hier het juiste antwoord"/>
                         </div>
                     </div>
                     <label class="cols-sm-2 control-label">Onjuiste antwoorden</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="WrongAnswer1" value="<?php echo $this->data['WrongAnswer1'];?>" placeholder="Typ hier een onjuist antwoord"/>
+                            <input type="text" class="form-control" name="WrongAnswer1" value="<?php echo html_entity_decode($this->data['WrongAnswer1']);?>" placeholder="Typ hier een onjuist antwoord"/>
                         </div>
                     </div>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="WrongAnswer2" value="<?php echo $this->data['WrongAnswer2'];?>" placeholder="Typ hier een onjuist antwoord"/>
+                            <input type="text" class="form-control" name="WrongAnswer2" value="<?php echo html_entity_decode($this->data['WrongAnswer2']);?>" placeholder="Typ hier een onjuist antwoord"/>
                         </div>
                     </div>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="WrongAnswer3" value="<?php echo $this->data['WrongAnswer3'];?>" placeholder="Typ hier een onjuist antwoord"/>
+                            <input type="text" class="form-control" name="WrongAnswer3" value="<?php echo html_entity_decode($this->data['WrongAnswer3']);?>" placeholder="Typ hier een onjuist antwoord"/>
                         </div>
                     </div>
                 </div>

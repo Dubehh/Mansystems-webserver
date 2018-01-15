@@ -7,12 +7,13 @@
 
 class FinderRemovePicture extends DataHandler {
 
-    function __construct($data) {
+    function __construct($data){
+        parent::__construct($data);
         $method = new Method($data);
         $uid = $method->fetch("uid");
         $file = $method->fetch("file");
 
-        $filePath = dirname($_SERVER['DOCUMENT_ROOT']) . '/uploads/finder/' . $uid . '/' . $file;
+        $filePath = $_SERVER['DOCUMENT_ROOT'] . '/upload/finder/' . $uid . '/' . $file;
 
         if (file_exists($filePath))
             unlink($filePath);

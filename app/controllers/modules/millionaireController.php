@@ -41,6 +41,7 @@ class MillionaireController extends TrackingController{
     public function add(){
         $method = new Method($_POST);
         if(!$method->isEmpty()){
+            $method->format();
             $handler = App::instance()->getDataSource()->getHandler();
             $handler->insertInto(self::TABLE)->values($method->getArray())->execute();
             App::instance()->redirect('module/millionaire');
@@ -62,6 +63,7 @@ class MillionaireController extends TrackingController{
         if(isset($id) && $id !=null){
             $method = new Method($_POST);
             if(!$method->isEmpty()){
+                $method->format();
                 App::instance()->getDataSource()->getHandler()
                     ->update(self::TABLE)
                     ->set($method->getArray())

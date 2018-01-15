@@ -22,12 +22,12 @@
                         <?php ResourceLoader::loadIMG('view.png', 'class="row-icon"');?>
                         <div class="millionaire-table-question table-expandable-result">
                             <label>Vraag:</label>
-                            <span><?php echo $dataRow['Question'];?></span>
+                            <span><?php echo html_entity_decode($dataRow['Question']);?></span>
                             <label>Antwoorden:</label>
                             <ol>
-                                <li class="millionaire-correct-answer">1) <?php echo $dataRow['CorrectAnswer']; ?></li>
+                                <li class="millionaire-correct-answer">1) <?php echo html_entity_decode($dataRow['CorrectAnswer']); ?></li>
                                 <?php for($i = 1; $i < 4; $i++)
-                                    echo "<li class='millionaire-wrong-answer'>".($i+1).") ".$dataRow['WrongAnswer'.$i]."</li>"; ?>
+                                    echo "<li class='millionaire-wrong-answer'>".($i+1).") ".html_entity_decode($dataRow['WrongAnswer'.$i])."</li>"; ?>
                             </ol>
                         </div></td>
                     <td><?php echo MillionaireController::$difficulties[$dataRow['Difficulty']]; ?></td>
