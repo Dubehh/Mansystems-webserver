@@ -29,6 +29,7 @@ class DashboardController extends Controller{
 
     public function user_verify($id){
         if(Validate::notNull($id))
+            /** @noinspection PhpUnhandledExceptionInspection */
             App::instance()->getDataSource()->getHandler()
                 ->update(Auth::DB_TABLE)
                 ->set('Validated', 1)
