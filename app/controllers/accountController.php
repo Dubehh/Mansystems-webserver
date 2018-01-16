@@ -35,6 +35,7 @@ class AccountController extends Controller{
             $pass_validated = preg_replace('/\s+/', '', $method->fetch('password_validated', false, ""));
             if(!empty($pass) && !empty($user)&& $pass===$pass_validated){
                 $handler = App::instance()->getDataSource()->getHandler();
+                /** @noinspection PhpUnhandledExceptionInspection */
                 $handler->insertInto(Auth::DB_TABLE)->values(array(
                     "Username" => $user,
                     "Password" => Security::encrypt($pass)
@@ -60,6 +61,7 @@ class AccountController extends Controller{
                 $validated = $response->fetch('Validated');
                 $hash = $response->fetch('Password');
                 if($validated && Security::valid($pass, $hash)){
+                    /** @noinspection PhpUnhandledExceptionInspection */
                     $handler->update(Auth::DB_TABLE)
                         ->set(array( 'Token' => $token = Security::getToken()))
                         ->where('ID', $id)
