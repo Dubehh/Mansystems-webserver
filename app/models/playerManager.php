@@ -53,9 +53,10 @@ class PlayerManager {
      * @throws Exception throws when an SQL error occurs
      */
     public function create($name, $uuid){
+        $name = trim($name);
         if(($player = $this->fetch('UUID', $uuid)) == null){
             $id = $this->handler->insertInto(self::TABLE)->values(array(
-                "Name" => $name,
+               "Name" => empty($name) ? 'Unknown' : $name,
                 "UUID" => $uuid,
                 "Registered" => date('y-m-d H:i:s')
             ))->execute();
