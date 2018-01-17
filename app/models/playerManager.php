@@ -56,7 +56,7 @@ class PlayerManager {
         $name = trim($name);
         if(($player = $this->fetch('UUID', $uuid)) == null){
             $id = $this->handler->insertInto(self::TABLE)->values(array(
-               "Name" => empty($name) ? 'Unknown' : $name,
+                "Name" => empty($name) ? 'Unknown Manny' : $name,
                 "UUID" => $uuid,
                 "Registered" => date('y-m-d H:i:s')
             ))->execute();
